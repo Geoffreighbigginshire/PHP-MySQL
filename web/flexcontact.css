@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.header {
+    padding: 60px;
+    background-color: aqua;
+    color: rgb(34, 6, 6);
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    background-color: rgb(39, 26, 26);
+}
+
+.navbar a {
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: rgb(148, 189, 72);
+    color: whitesmoke;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.side {
+    flex: 70%;
+    background-color: rgb(118, 119, 29);
+    padding: 20px;
+}
+
+.main {
+    flex: 70%;
+    padding: 20px;
+    background-color: rgb(116, 119, 65);
+}
+
+.img {
+    background-color:  tan;
+    padding: 20px;
+    width: 100px;
+    text-decoration: center;
+}
+
+.footer {
+    background-color: darkblue;
+    padding: 20px;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.contact-heading {
+    text-align: center;
+}
+
+.contact-form-item {
+    background-color: darkslateblue;
+    color: snow;
+    font-size: 1,2rem;
+    padding: 5px;
+    text-align: center;
+}
+
+.btn {
+    background-color: black;
+    color: white;
+    font-size: 1,2rem;
+    padding: 15px;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: tomato;
+    color: thistle;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+    .row, 
+    .navbar {
+        flex-direction: column;
+    }
+}
+
+
+
