@@ -39,23 +39,6 @@ if ($result->num_rows > 0) {
                 color: snow;
             }
 
-            .navbar{
-                display: flex;
-                background-color: darkblue; 
-                width: 100%;
-            }
-
-            .navbar a{
-                color: white;
-                padding: 14px 20px;
-                text-align: center;
-                text-decoration: none;
-            }
-
-            .navbar a:hover{
-                background-color: black;
-                color: grey;
-            }
         </style>
     </head>
 
@@ -65,15 +48,7 @@ if ($result->num_rows > 0) {
             </div>
         </div>
         
-        <div class="navbar">
-            <a href="input.php">Add Data</a>
-            <a href="web/w1.html">Home</a>
-            <a href="web/profil.html">News</a>
-            <a href="#">FAQ</a>
-            <a href="web/profil.html">About Us</a>
-            <a href="web/flexcontact.html">Contact Us</a>
-        </div>
-
+        
         <div class="container-fluid p-4">
             <div class="row">
                 <table border="1" class="table table-dark table-hover">
