@@ -16,10 +16,73 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/',trim($_POST["username"]))){      //Letters (character) that can be contained within the "username" box or column
         $username_err = "Username can only contain letters, numbers, and underscores.";
     } else {
-        
+        $sql = "SELECT id FROM users WHERE username = ?";                            //preparing sql if username exist
+
+        if($stmt = $conn->prepare($sql)){
+            $stmt->bind_param("s",$param_username);
+
+            //creating parameter
+            $param_username = trim($_POST["username"]);
+
+            //executing statement
+            if($stmt->execute()){
+
+                $stmt->store_result();  //results are saved in stats
+
+
+                if($stmt->num_rows() == 1){
+                    $username_err = "This username is already taken";
+                } else{
+                    $username = trim($_POST["username"]);
+                }
+
+            }else{
+                echo "Aren't you forgetting something? Please try again later";
+            }
+
+            $stmt->close();         //closing connection
+        }
+    }
+    //validate password
+
+    if (empty(trim($_POST['password']))){
+        $password_err = "Please enter a password.";
+    } elseif(strlen(trim($_POST['password'])) < 6){
+        $password_err = "Password must have at least 6 characters.";
+    } else{
+        $password = trim($_POST["password"]);
     }
 
+    //validation for confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Please confirm your password.";
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
 
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Password did not match";
+        }
+    } 
+
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+
+        if($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("ss",$param_username, $param_password);
+
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT);
+            
+            if($stmt->execute()){
+                header("location: login.php");
+            } else{
+                echo "Something's wrong, Try Again ! Later.";
+            }
+
+            $stmt->close();
+        }
+    }
+    $conn->close();
 }
 
 ?>
