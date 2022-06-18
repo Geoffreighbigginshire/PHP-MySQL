@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else {
         $sql = "SELECT id FROM users WHERE username = ?";                            //preparing sql if username exist
 
-        if($stmt = $conn->prepare($sql)){
+        if($stmt = $HL2->prepare($sql)){
             $stmt->bind_param("s",$param_username);
 
             //creating parameter
@@ -67,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
 
-        if($stmt = $conn->prepare($sql)) {
+        if($stmt = $HL2->prepare($sql)) {
             $stmt->bind_param("ss",$param_username, $param_password);
 
             $param_username = $username;
@@ -82,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->close();
         }
     }
-    $conn->close();
+    $HL2->close();
 }
 
 ?>
